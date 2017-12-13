@@ -58,10 +58,10 @@ public class Purify {
                         print("FAILED\n");
                     }
                     //Step 3 - Create the apk (i.e. a jar archive)
-                    //Remove previous signatures
-                    FileUtil.deleteRecursive(new File(outDir + "/META-INF"));
+                    //Remove previous signatures [disabled]
+                    //FileUtil.deleteRecursive(new File(outDir + "/META-INF"));
                     print("Creating new apk...");
-                    String newApkPath = apkPath+"-unsigned.apk";
+                    String newApkPath = apkPath+"-purified.apk";
                     if (createNewApk(outDir, newApkPath)) {
                         print("OK\n");
                     } else {
@@ -71,8 +71,8 @@ public class Purify {
                     //TODO: Step 4 - Sign the app [external, not implemented here]
                     //Clear temporary files
                     FileUtil.deleteRecursive(out);
-                    print("Finish!\nThe APK is purified!\n");
-                    print("New APK exported into:\n" + newApkPath + "\nSign and reinstall it.");
+                    print("Finish! The APK is purified!\nSign and reinstall it.\n");
+                    print("New APK exported into:\n" + newApkPath);
                 }
             };
             worker.start();
